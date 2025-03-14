@@ -1,10 +1,11 @@
 const Langs = {
   en_US: {
+    build: 'Build Static Site', 
     save: 'Save',
     copyMarkdown: 'Copy Markdown',
     copyHtml: 'Copy HTML',
-    resetConfig: 'Reset config',
-    resetConfirm: "Are you sure to reset the markdown-editor's config?",
+    resetConfig: 'Reset Configuration',
+    resetConfirm: "Are you sure that you wish to reset the configuration for Teddy?",
   },
   ja_JP: {
     save: '保存する',
@@ -17,7 +18,7 @@ const Langs = {
     copyMarkdown: '复制 Markdown',
     copyHtml: '复制 HTML',
     resetConfig: '重置配置',
-    resetConfirm: '确定要重置 markdown-editor 的配置么?',
+    resetConfirm: '确定要重置 Teddy 的配置么?',
   },
 }
 

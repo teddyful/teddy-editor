@@ -1,78 +1,103 @@
-# Markdown Editor — A full-featured WYSIWYG editor for markdown
+<a name="readme-top"></a>
+<div align="center">
+<h1>Teddy Editor</h1>
+<p>WYSIWYG markdown editor extension for Visual Studio Code (VS Code) seamlessly integrated with Teddy.</p>
+<p><a href="https://teddyful.com" target="_blank">teddyful.com</a></p>
+</div>
 
-[![badge_title](https://vsmarketplacebadges.dev/version-short/zaaack.markdown-editor.svg)](https://marketplace.visualstudio.com/items?itemName=zaaack.markdown-editor) [![](https://vsmarketplacebadges.dev/installs-short/zaaack.markdown-editor.svg)](https://marketplace.visualstudio.com/items?itemName=zaaack.markdown-editor) [![](https://vsmarketplacebadges.dev/rating-short/zaaack.markdown-editor.svg)](https://marketplace.visualstudio.com/items?itemName=zaaack.markdown-editor)
+## Table of Contents  
+[1. Introduction](#introduction)<br/>
+[2. Prerequisites](#prerequisites)<br/>
+[3. Installation](#installation)<br/>
+[4. Configuration](#configuration)<br/>
+[5. Usage](#usage)<br/>
+[6. Credits](#credits)<br/>
+[7. Further Information](#information)<br/>
+<br/>
 
-## Demo
+## <a name="introduction"></a>1. Introduction
 
-![demo](./demo.gif)
+The Teddy Editor is a WYSIWYG markdown editor extension for Visual Studio Code (VS Code), forked from <a href="https://github.com/zaaack/vscode-markdown-editor" target="_blank">zaaack/vscode-markdown-editor</a>, that is seamlessly integrated with <a href="https://github.com/teddyful/teddy" target="_blank">Teddy</a>. It enables content editors to manage and build static sites, using Teddy, entirely within VS Code.
 
-## Features
+![Teddy Editor in VS Code](media/teddy-editor-screenshot.jpg "Teddy Editor in VS Code")
 
-- What You See Is What You Get (WYSIWYG)
-- Auto sync changes between the VSCode editor and webview
-- Copy markdown/html
-- Uploaded/pasted/drag-dropped images will be auto-saved to the `assets` folder
-- Multi-theme support
-- Shortcut keys
-- Multiple editting modes: instant Rendering mode (**Recommand!**) / WYSIWYG mode / split screen mode
-- Markdown extensions
-- Multiple graph support including KaTeX / Mermaid / Graphviz / ECharts / abc.js(notation) / ...
-- For more usage please see [vditor](https://github.com/Vanessa219/vditor)
+<p align="right"><a href="#readme-top">Back to Top &#9650;</a></p>
 
-## Install
+## <a name="prerequisites"></a>2. Prerequisites
 
-[https://marketplace.visualstudio.com/items?itemName=zaaack.markdown-editor](https://marketplace.visualstudio.com/items?itemName=zaaack.markdown-editor)
+Please ensure that the following required software services are installed in your environment.
 
-## Supported syntax
+* <a href="https://teddyful.com" target="_blank">Teddy</a> - Static site generator.
+* <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code (VS Code)</a> - Source code editor.
 
-[demo article](https://ld246.com/guide/markdown)
+<p align="right"><a href="#readme-top">Back to Top &#9650;</a></p>
 
-## Usage
+## <a name="installation"></a>3. Installation
 
-### 1. Command mode in markdown file
+### Marketplace Installation
 
-- open a markdown file
-- type `cmd-shift-p` to enter command mode
-- type `markdown-editor: Open with markdown editor`
+To install the Teddy Editor extension via the Visual Studio marketplace (recommended), please follow the instructions below.
 
-### 2. Key bindings
+1. Open VS Code.
+2. Select 'Extensions' from either the left menu, by selecting File > Preferences > Extensions, or by pressing CTRL + SHIFT + X.
+3. In the search input box, search for and install 'Teddy Editor'.
 
-- open a markdown file
-- type `ctrl+shift+alt+m` for win or `cmd+shift+alt+m` for mac
+The direct link to the extension in the Visual Studio marketplace is as follows: <a href="https://marketplace.visualstudio.com/items?itemName=teddyful.teddy-editor" target="_blank">https://marketplace.visualstudio.com/items?itemName=teddyful.teddy-editor</a>
 
-### 3. Explorer Context menu
+### Manual Installation
 
-- right click on markdown file
-- then click `Open with markdown editor`
+To manually install the Teddy Editor extension, please follow the instructions below.
 
-### 4. Editor title context menu
+1. Visit https://github.com/teddyful/teddy-editor/releases
+2. Dowload `teddy-editor-${version}.vsix`, where `${version}` is the latest release version of Teddy Editor.
+3. Open VS Code.
+4. Select 'Extensions' from either the left menu, by selecting File > Preferences > Extensions, or by pressing CTRL + SHIFT + X.
+5. Select the three dots `...` besides the 'Extensions' title, and select 'Install from VSIX...'.
+6. Navigate to and select the `teddy-editor-${version}.vsix` file that was downloaded in step 2.
 
-- right click on a opened markdown file's tab title
-- then click `Open with markdown editor`
+<p align="right"><a href="#readme-top">Back to Top &#9650;</a></p>
 
-### Custom CSS (custom layout and vditor personalization)
+## <a name="configuration"></a>4. Configuration
 
-Edit your settings.json and add
+In order to build static sites using Teddy from within VS Code, the Teddy Editor extension must be properly configured.
 
-```
-"markdown-editor.customCss": "my custom css rules"
+1. Open VS Code.
+2. Select File > Preferences > Settings.
+3. Select Extensions > Teddy.
+4. Under 'Teddy: Path', enter the absolute path to the local instance of Teddy (required).
+5. Under 'Teddy: Site Name', enter the name of the site that you wish to build, for example `travelbook` (required).
+6. Under 'Teddy: Theme Name', enter the name of the theme that you wish to use, for example `bear` (required).
+7. Under 'Teddy: Build Options', enter any build options that you would like to use, for example `--env local --minify-html`. Please visit <a href="https://teddyful.com/docs/latest/build/" target="_blank">https://teddyful.com/docs/latest/build/</a> for a full list of available build options.
 
-// Eg: "markdown-editor.customCss": ".vditor-ir pre.vditor-reset {line-height: 32px;padding-right: calc(100% - 800px) !important; margin-left: 100px;    font-family: system-ui !important;}"
-```
+<p align="right"><a href="#readme-top">Back to Top &#9650;</a></p>
 
-## Acknowledgement
+## <a name="usage"></a>5. Usage
 
-- [vscode](https://github.com/microsoft/vscode)
-- [vditor](https://github.com/Vanessa219/vditor)
+### Markdown Editor
 
-## Todo
+To open the Teddy Markdown Editor, simply right-click on any markdown file in the Explorer view in VS Code, and select 'Open with Teddy' from the resultant context menu.
 
-- [ ] Using [Custom Text Editor](https://code.visualstudio.com/api/extension-guides/custom-editors#custom-text-editor) ([demo](https://github.com/gera2ld/markmap-vscode))
+![Teddy Editor in VS Code](media/teddy-editor-screenshot.jpg "Teddy Editor in VS Code")
 
-## License
+### Build
 
-MIT
+To build the configured static site, simply select the button with the Teddy icon found in the toolbar of the Teddy Editor.
 
-## Support
+![The Teddy Editor toolbar](media/teddy-editor-toolbar.jpg "The Teddy Editor toolbar")
 
-If you like this extension make sure to star the repo. I am always looking for new ideas and feedback. In addition, it is possible to [donate via paypal](https://www.paypal.me/zaaack).
+<p align="right"><a href="#readme-top">Back to Top &#9650;</a></p>
+
+## <a name="credits"></a>6. Credits
+
+Teddy Editor is a fork of the fantastic <a href="https://github.com/zaaack/vscode-markdown-editor" target="_blank">Markdown Editor</a> VS Code extension created by <a href="https://github.com/zaaack" target="_blank">Zack Young (zaaack)</a> which in turn uses the amazing <a href="https://github.com/Vanessa219/vditor" target="_blank">Vditor</a> in-browser Markdown editor. Please check out both of these wonderful open-source software projects and, if you are able, consider donating to them to support the awesome open-source community.
+
+* <a href="https://github.com/Vanessa219/vditor" target="_blank">Vditor</a> - in-browser Markdown editor.
+* <a href="https://github.com/zaaack/vscode-markdown-editor" target="_blank">Markdown Editor</a> - VS Code extension.
+
+<p align="right"><a href="#readme-top">Back to Top &#9650;</a></p>
+
+## <a name="information"></a>7. Further Information
+
+For further information, please visit <a href="https://teddyful.com" target="_blank">teddyful.com</a>.
+
+<p align="right"><a href="#readme-top">Back to Top &#9650;</a></p>

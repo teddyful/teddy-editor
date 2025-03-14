@@ -1,13 +1,20 @@
-import * as vscode from 'vscode'
-import * as NodePath from 'path'
-const KeyVditorOptions = 'vditor.options'
+import * as vscode from 'vscode';
+import * as NodePath from 'path';
+import { validateExtensionConfig, runStaticSiteBuilder } from './teddy-utils';
+
+
+const KeyVditorOptions = 'vditor.options';
 
 function debug(...args: any[]) {
-  console.log(...args)
+  console.log(...args);
+}
+
+function showInfo(msg: string) {
+  vscode.window.showInformationMessage(msg);
 }
 
 function showError(msg: string) {
-  vscode.window.showErrorMessage(`[markdown-editor] ${msg}`)
+  vscode.window.showErrorMessage(`Error - ${msg}`);
 }
 
 export function activate(context: vscode.ExtensionContext) {
@@ -120,7 +127,7 @@ class EditorPanel {
   }
 
   static get config() {
-    return vscode.workspace.getConfiguration('markdown-editor')
+    return vscode.workspace.getConfiguration('teddy');
   }
 
   private constructor(
@@ -264,6 +271,25 @@ class EditorPanel {
             vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(url))
             break
           }
+          case 'teddy-build': {
+            const config = vscode.workspace.getConfiguration('teddy');
+            const extConfigValidity = validateExtensionConfig(config);
+            if ( !extConfigValidity.isValid ) {
+              showError(extConfigValidity.msg);
+            } else {
+              showInfo(`Building the '${config.siteName}' static site...`);
+              const exitCode = await runStaticSiteBuilder(config);
+              if ( exitCode == 0 ) {
+                showInfo(`Success! Your static site '${config.siteName}' was ` +
+                  'successfully built.');
+              } else {
+                showError('An error was encountered whilst attempting to ' + 
+                  `build your '${config.siteName}' site. Please consult ` + 
+                  `the Teddy logs in ${config.path}/logs for further details.`);
+              }
+            }
+            break;
+          }
         }
       },
       null,
@@ -272,10 +298,7 @@ class EditorPanel {
   }
 
   static getAssetsFolder(uri: vscode.Uri) {
-    const imageSaveFolder = (
-      EditorPanel.config.get<string>('imageSaveFolder') || 'assets'
-    )
-      .replace(
+    const imageSaveFolder = 'assets'.replace(
         '${projectRoot}',
         vscode.workspace.getWorkspaceFolder(uri)?.uri.fsPath || ''
       )

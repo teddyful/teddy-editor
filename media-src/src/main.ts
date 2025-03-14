@@ -71,16 +71,32 @@ function initVditor(msg) {
     upload: {
       url: '/fuzzy', // 没有 url 参数粘贴图片无法上传 see: https://github.com/Vanessa219/vditor/blob/d7628a0a7cfe5d28b055469bf06fb0ba5cfaa1b2/src/ts/util/fixBrowserBehavior.ts#L1409
       async handler(files) {
-        // console.log('files', files)
+        const permittedExtensions = [
+          "gif", 
+          "jpg", 
+          "jpeg", 
+          "mp3", 
+          "mp4", 
+          "pdf", 
+          "png"
+        ];
+        for ( const file of files ) {
+          const extension = file.name.split('.').pop().toLowerCase();
+          if ( !permittedExtensions.includes(extension) ) {
+            vscode.postMessage({
+              command: 'error',
+              content: 'Only common media and PDF file types are permitted for upload.'
+            });
+            return;
+          }
+        }
         let fileInfos = await Promise.all(
           files.map(async (f) => {
-            const d = new Date()
             return {
               base64: await fileToBase64(f),
-              name: `${format(new Date(), 'yyyyMMdd_HHmmss')}_${f.name}`.replace(
-                /[^\w-_.]+/,
-                '_'
-              ),
+              name: f.name.toLowerCase()
+                .replace(/\s+/g, '-')
+                .replace(/[^a-z0-9-_.]+/g, ''),
             }
           })
         )
