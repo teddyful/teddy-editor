@@ -75,7 +75,7 @@ In order to build static sites using Teddy from within VS Code, the Teddy Editor
 
 ### Markdown Editor
 
-To open the Teddy Markdown Editor, simply right-click on any markdown file in the Explorer view in VS Code, and select 'Open with Teddy' from the resultant context menu.
+To open the Teddy Editor, simply right-click on any markdown file in the Explorer view in VS Code, and select 'Open with Teddy' from the resultant context menu.
 
 ![Teddy Editor in VS Code](media/teddy-editor-screenshot.jpg "Teddy Editor in VS Code")
 

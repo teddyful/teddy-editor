@@ -1,6 +1,6 @@
 {
   "name": "teddy-editor",
-  "displayName": "Teddy Markdown Editor",
+  "displayName": "Teddy Editor",
   "icon": "media/teddy-logo.png",
   "description": "WYSIWYG markdown editor extension for Visual Studio Code (VS Code) seamlessly integrated with Teddy.",
   "version": "0.0.1",
