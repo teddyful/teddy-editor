@@ -1,121 +1,116 @@
 {
-  "name": "teddy-editor",
-  "displayName": "Teddy Editor",
-  "icon": "media/teddy-logo.png",
-  "description": "WYSIWYG markdown editor extension for Visual Studio Code (VS Code) seamlessly integrated with Teddy.",
-  "version": "0.0.1",
-  "publisher": "teddyful",
-  "private": true,
-  "engines": {
-    "vscode": "^1.47.0"
-  },
-  "categories": [
-    "Programming Languages",
-    "Other"
-  ],
-  "keywords": [
-    "editor",
-    "markdown",
-    "markdown-previewer",
-    "markdown-editor",
-    "teddy",
-    "teddy-editor",
-    "typora",
-    "wysiwyg"
-  ],
-  "activationEvents": [
-    "onCommand:markdown-editor.openEditor",
-    "onWebviewPanel:markdown-editor",
-    "onLanguage:markdown"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/teddyful/teddy-editor.git"
-  },
-  "main": "out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "markdown-editor.openEditor",
-        "title": "Open with Teddy",
-        "category": "markdown-editor"
-      }
+    "name": "teddy-editor",
+    "displayName": "Teddy Editor",
+    "icon": "media/teddy-logo.png",
+    "description": "WYSIWYG markdown editor extension for Visual Studio Code (VS Code) seamlessly integrated with Teddy.",
+    "version": "0.0.2",
+    "publisher": "teddyful",
+    "private": true,
+    "engines": {
+        "vscode": "^1.105.0"
+    },
+    "categories": [
+        "Programming Languages",
+        "Other"
     ],
-    "menus": {
-      "explorer/context": [
-        {
-          "when": "resourceLangId == markdown",
-          "command": "markdown-editor.openEditor",
-          "group": "navigation"
-        }
-      ],
-      "editor/title/context": [
-        {
-          "when": "resourceLangId == markdown",
-          "command": "markdown-editor.openEditor",
-          "group": "1_open"
-        }
-      ]
+    "keywords": [
+        "editor",
+        "markdown",
+        "markdown-previewer",
+        "markdown-editor",
+        "teddy",
+        "teddy-editor",
+        "typora",
+        "wysiwyg"
+    ],
+    "activationEvents": [
+        "onCommand:markdown-editor.openEditor",
+        "onWebviewPanel:markdown-editor",
+        "onLanguage:markdown"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/teddyful/teddy-editor.git"
     },
-    "configuration": {
-      "title": "Teddy",
-      "properties": {
-        "teddy.path": { 
-          "type": "string", 
-          "default": "", 
-          "description": "The absolute path to the local instance of Teddy (hereafter referred to as $TEDDY_BASE).", 
-          "order": 1
-        }, 
-        "teddy.siteName": { 
-          "type": "string", 
-          "default": "", 
-          "description": "The name of the site, that must exist in $TEDDY_BASE/sites, that you wish to build.", 
-          "order": 2
-        }, 
-        "teddy.themeName": { 
-          "type": "string", 
-          "default": "", 
-          "description": "The name of the theme, that must exist in $TEDDY_BASE/themes, that you wish to use.", 
-          "order": 3
-        }, 
-        "teddy.buildOptions": { 
-          "type": "string", 
-          "default": "", 
-          "description": "See https://teddyful.com/docs/latest/build/ for a full list of available build options.", 
-          "order": 4
-        }, 
-        "teddy.useVscodeThemeColor": {
-          "type": "boolean",
-          "default": true,
-          "description": "Use VS Code's active theme background color as the markdown editor's background color.", 
-          "order": 5
+    "main": "out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "markdown-editor.openEditor",
+                "title": "Open with Teddy",
+                "category": "markdown-editor"
+            }
+        ],
+        "menus": {
+            "explorer/context": [
+                {
+                    "when": "resourceLangId == markdown",
+                    "command": "markdown-editor.openEditor",
+                    "group": "navigation"
+                }
+            ],
+            "editor/title/context": [
+                {
+                    "when": "resourceLangId == markdown",
+                    "command": "markdown-editor.openEditor",
+                    "group": "1_open"
+                }
+            ]
         },
-        "teddy.customCss": {
-          "type": "string",
-          "default": "", 
-          "order": 6
-        }
-      }
+        "configuration": {
+            "title": "Teddy",
+            "properties": {
+                "teddy.path": { 
+                    "type": "string", 
+                    "default": "", 
+                    "description": "The absolute path to the local instance of Teddy (hereafter referred to as $TEDDY_BASE).", 
+                    "order": 1
+                }, 
+                "teddy.siteName": { 
+                    "type": "string", 
+                    "default": "", 
+                    "description": "The name of the site, that must exist in $TEDDY_BASE/sites, that you wish to build.", 
+                    "order": 2
+                }, 
+                "teddy.themeName": { 
+                    "type": "string", 
+                    "default": "", 
+                    "description": "The name of the theme, that must exist in $TEDDY_BASE/themes, that you wish to use.", 
+                    "order": 3
+                }, 
+                "teddy.buildOptions": { 
+                    "type": "string", 
+                    "default": "", 
+                    "description": "See https://teddyful.com/docs/latest/build/ for a full list of available build options.", 
+                    "order": 4
+                }, 
+                "teddy.useVscodeThemeColor": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Use VS Code's active theme background color as the markdown editor's background color.", 
+                    "order": 5
+                }
+            }
+        },
+        "keybindings": [
+            {
+                "key": "ctrl+shift+alt+m",
+                "command": "markdown-editor.openEditor",
+                "mac": "cmd+shift+alt+m",
+                "when": "editorTextFocus && editorLangId == markdown"
+            }
+        ]
     },
-    "keybindings": [
-      {
-        "key": "ctrl+shift+alt+m",
-        "command": "markdown-editor.openEditor",
-        "mac": "cmd+shift+alt+m",
-        "when": "editorTextFocus && editorLangId == markdown"
-      }
-    ]
-  },
-  "scripts": {
-    "watch": "foy watch",
-    "start": "foy watch"
-  },
-  "devDependencies": {
-    "@types/node": "^12.12.0",
-    "@types/vscode": "^1.47.0",
-    "foy": "^0.2.5",
-    "ts-node": "9.1.1",
-    "typescript": "4.2.2"
-  },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+    "scripts": {
+        "watch": "foy watch",
+        "start": "foy watch"
+    },
+    "devDependencies": {
+        "@types/node": "25.0.3",
+        "@types/vscode": "1.107.0",
+        "foy": "0.3.0",
+        "ts-node": "10.9.2",
+        "typescript": "5.9.3"
+    },
+    "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
