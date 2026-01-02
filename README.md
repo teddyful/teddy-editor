@@ -17,7 +17,7 @@
 
 ## <a name="introduction"></a>1. Introduction
 
-The Teddy Editor is a WYSIWYG markdown editor extension for Visual Studio Code (VS Code), forked from <a href="https://github.com/zaaack/vscode-markdown-editor" target="_blank">zaaack/vscode-markdown-editor</a>, that is seamlessly integrated with <a href="https://github.com/teddyful/teddy" target="_blank">Teddy</a>. It enables content editors to manage and build static sites, using Teddy, entirely within VS Code.
+The Teddy Editor is a WYSIWYG (What You See Is What You Get) markdown editor extension for Visual Studio Code (VS Code), forked from <a href="https://github.com/zaaack/vscode-markdown-editor" target="_blank">zaaack/vscode-markdown-editor</a>, that is seamlessly integrated with <a href="https://github.com/teddyful/teddy" target="_blank">Teddy</a>. It enables content editors to manage and build sites, using Teddy, entirely within VS Code.
 
 ![Teddy Editor in VS Code](media/teddy-editor-screenshot.jpg "Teddy Editor in VS Code")
 
@@ -27,7 +27,7 @@ The Teddy Editor is a WYSIWYG markdown editor extension for Visual Studio Code (
 
 Please ensure that the following required software services are installed in your environment.
 
-* <a href="https://teddyful.com" target="_blank">Teddy</a> - Static site generator.
+* <a href="https://teddyful.com" target="_blank">Teddy</a> - Opinionated open-source content management system (CMS) and static site generator (SSG) that focuses on simplicity and easy content management.
 * <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code (VS Code)</a> - Source code editor.
 
 <p align="right"><a href="#readme-top">Back to Top &#9650;</a></p>
@@ -59,7 +59,7 @@ To manually install the Teddy Editor extension, please follow the instructions b
 
 ## <a name="configuration"></a>4. Configuration
 
-In order to build static sites using Teddy from within VS Code, the Teddy Editor extension must be properly configured.
+In order to build sites using Teddy from within VS Code, the Teddy Editor extension must be properly configured.
 
 1. Open VS Code.
 2. Select File > Preferences > Settings.
@@ -67,7 +67,7 @@ In order to build static sites using Teddy from within VS Code, the Teddy Editor
 4. Under 'Teddy: Path', enter the absolute path to the local instance of Teddy (required).
 5. Under 'Teddy: Site Name', enter the name of the site that you wish to build, for example `travelbook` (required).
 6. Under 'Teddy: Theme Name', enter the name of the theme that you wish to use, for example `bear` (required).
-7. Under 'Teddy: Build Options', enter any build options that you would like to use, for example `--env local --minify-html`. Please visit <a href="https://teddyful.com/docs/latest/build/" target="_blank">https://teddyful.com/docs/latest/build/</a> for a full list of available build options.
+7. Under 'Teddy: Build Options', enter any build options that you would like to use, for example `--minify-css --minify-html --minify-js --skip-post-build-cleanup`. Please visit <a href="https://teddyful.com/docs/latest/build/" target="_blank">https://teddyful.com/docs/latest/build/</a> for a full list of available build options.
 
 <p align="right"><a href="#readme-top">Back to Top &#9650;</a></p>
 
@@ -81,7 +81,7 @@ To open the Teddy Editor, simply right-click on any markdown file in the Explore
 
 ### Build
 
-To build the configured static site, simply select the button with the Teddy icon found in the toolbar of the Teddy Editor.
+To build the configured site, simply select the button with the Teddy icon found in the toolbar of the Teddy Editor.
 
 ![The Teddy Editor toolbar](media/teddy-editor-toolbar.jpg "The Teddy Editor toolbar")
 
@@ -89,7 +89,7 @@ To build the configured static site, simply select the button with the Teddy ico
 
 ## <a name="credits"></a>6. Credits
 
-Teddy Editor is a fork of the fantastic <a href="https://github.com/zaaack/vscode-markdown-editor" target="_blank">Markdown Editor</a> VS Code extension created by <a href="https://github.com/zaaack" target="_blank">Zack Young (zaaack)</a> which in turn uses the amazing <a href="https://github.com/Vanessa219/vditor" target="_blank">Vditor</a> in-browser Markdown editor. Please check out both of these wonderful open-source software projects and, if you are able, consider donating to them to support the awesome open-source community.
+Teddy Editor is a fork of the fantastic <a href="https://github.com/zaaack/vscode-markdown-editor" target="_blank">Markdown Editor</a> VS Code extension created by <a href="https://github.com/zaaack" target="_blank">Zack Young (zaaack)</a> which in turn uses the amazing <a href="https://github.com/Vanessa219/vditor" target="_blank">Vditor</a> in-browser Markdown editor. Please check out both of these wonderful open-source software projects and, if you are able to, consider donating to one or both of them to help support the awesome open-source community.
 
 * <a href="https://github.com/Vanessa219/vditor" target="_blank">Vditor</a> - in-browser Markdown editor.
 * <a href="https://github.com/zaaack/vscode-markdown-editor" target="_blank">Markdown Editor</a> - VS Code extension.
