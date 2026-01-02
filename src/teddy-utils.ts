@@ -38,21 +38,30 @@ const validBuildOptions = [
 	'--env', 
 	'--custom-css-only', 
 	'--custom-js-only', 
-	'--dist-use-build-id', 
+	'--generate-ds-pdf', 
 	'--ignore-assets', 
 	'--ignore-collection', 
 	'--ignore-css', 
+	'--ignore-data', 
 	'--ignore-fonts', 
 	'--ignore-html', 
 	'--ignore-images', 
 	'--ignore-js', 
 	'--ignore-robots', 
 	'--ignore-sitemap', 
+	'--ignore-videos', 
 	'--ignore-web-config', 
 	'--minify-css', 
 	'--minify-html', 
 	'--minify-js', 
-	'--skip-post-build-cleanup'
+	'--skip-post-build-cleanup', 
+	'--version-assets-build-id', 
+	'--version-assets-site-number', 
+	'--version-build-date', 
+	'--version-collection-build-id', 
+	'--version-collection-site-number', 
+	'--version-site-config-build-id', 
+	'--version-site-config-site-number'
 ];
 
 export function validateExtensionConfig(
@@ -96,7 +105,7 @@ export function validateExtensionConfig(
 	if ( !fs.existsSync(siteDir) ) {
 		return { isValid: false, msg: 'Missing Site - The configured site ' + 
 			'name does not correspond to a site that exists in the sites ' + 
-			'directory specified by the provided instance of Teddy.' };
+			'directory specified in the provided instance of Teddy.' };
 	}
 
 	// Validate the configured theme name.
@@ -113,7 +122,7 @@ export function validateExtensionConfig(
 	if ( !fs.existsSync(themeDir) ) {
 		return { isValid: false, msg: 'Missing Site - The configured theme ' + 
 			'name does not correspond to a theme that exists in the themes ' + 
-			'directory specified by the provided instance of Teddy.' };
+			'directory specified in the provided instance of Teddy.' };
 	}
 
 	// Validate the configured build options.
@@ -148,15 +157,34 @@ function isValidInstance(path: string): boolean {
 
 }
 
-export async function runStaticSiteBuilder(
-	config: vscode.WorkspaceConfiguration): 
-		Promise<number> {
+export async function runSiteBuilder(
+	config: vscode.WorkspaceConfiguration, 
+		buildOptions?: string): Promise<number> {
+	
+	
+	// Base build command.
 	let cmd = `npm run --prefix "${config.path}" build -- ` + 
 		`--site-name ${config.siteName} ` + 
 		`--theme-name ${config.themeName}`;
+	
+	// Append build options specified in the extension settings
+	// to the build command.
 	if ( config.buildOptions ) {
 		cmd = cmd + ' ' + config.buildOptions;
 	}
+
+	// Append build options originating from toolbar-sourced 
+	// user selections to the build command.
+	if ( buildOptions && buildOptions.length > 0 ) {
+		const buildOptionsArray = buildOptions.trim().split(' ');
+		for (const buildOption of buildOptionsArray) {
+			if ( !config.buildOptions.includes(buildOption) ) {
+				cmd = cmd + ' ' + buildOption;
+			}
+		}
+	}
+
+	// Execute the build command.
 	const exec = util.promisify(child.exec);
 	try {
 		await exec(cmd);
@@ -164,4 +192,5 @@ export async function runStaticSiteBuilder(
 	} catch (err) {
 		return 1;
 	}
+
 }

@@ -24,7 +24,6 @@
         "wysiwyg"
     ],
     "activationEvents": [
-        "onCommand:markdown-editor.openEditor",
         "onWebviewPanel:markdown-editor",
         "onLanguage:markdown"
     ],

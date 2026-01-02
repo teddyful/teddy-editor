@@ -1,6 +1,9 @@
 const Langs = {
   en_US: {
-    build: 'Build Static Site', 
+    buildSite: 'Build Site', 
+	buildSiteIgnoreAssets: 'Build Site - Ignore Assets', 
+	buildSiteIgnoreCollection: 'Build Site - Ignore Collection', 
+	buildSiteGenerateDsPdf: 'Build Site - Generate PDF', 
     save: 'Save',
     copyMarkdown: 'Copy Markdown',
     copyHtml: 'Copy HTML',

@@ -71,3 +71,7 @@ body[data-use-vscode-theme-color="1"] .vditor {
 .jconfirm-buttons button {
   text-transform: none!important;
 }
+.vditor-menu--separator {
+    border-top: 1px solid var(--vscode-menu-separatorBackground);
+	padding-top: 3px;
+}

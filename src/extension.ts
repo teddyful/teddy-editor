@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import * as NodePath from 'path';
-import { validateExtensionConfig, runStaticSiteBuilder } from './teddy-utils';
+import { validateExtensionConfig, runSiteBuilder } from './teddy-utils';
 
 
 const KeyVditorOptions = 'vditor.options';
@@ -29,6 +29,27 @@ export function activate(context: vscode.ExtensionContext) {
   )
 
   context.globalState.setKeysForSync([KeyVditorOptions])
+}
+
+async function teddyBuildSite(buildOptions?: string) {
+	const config = vscode.workspace.getConfiguration('teddy');
+	const extConfigValidity = validateExtensionConfig(config);
+	if ( !extConfigValidity.isValid ) {
+		showError(extConfigValidity.msg);
+    } else {
+		showInfo(`Building the '${config.siteName}' site...`);
+		const exitCode = buildOptions && buildOptions.length > 0 ? 
+			await runSiteBuilder(config, buildOptions) : 
+			await runSiteBuilder(config);
+		if ( exitCode == 0 ) {
+			showInfo(`Success! Your site '${config.siteName}' was ` +
+				'successfully built.');
+		} else {
+			showError('An error was encountered whilst attempting to ' + 
+				`build your '${config.siteName}' site. Please consult ` + 
+				`the Teddy logs in ${config.path}/logs for further details.`);
+		}
+	}
 }
 
 /**
@@ -271,23 +292,20 @@ class EditorPanel {
             vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(url))
             break
           }
-          case 'teddy-build': {
-            const config = vscode.workspace.getConfiguration('teddy');
-            const extConfigValidity = validateExtensionConfig(config);
-            if ( !extConfigValidity.isValid ) {
-              showError(extConfigValidity.msg);
-            } else {
-              showInfo(`Building the '${config.siteName}' static site...`);
-              const exitCode = await runStaticSiteBuilder(config);
-              if ( exitCode == 0 ) {
-                showInfo(`Success! Your static site '${config.siteName}' was ` +
-                  'successfully built.');
-              } else {
-                showError('An error was encountered whilst attempting to ' + 
-                  `build your '${config.siteName}' site. Please consult ` + 
-                  `the Teddy logs in ${config.path}/logs for further details.`);
-              }
-            }
+          case 'teddy-build-site': {
+            await teddyBuildSite();
+            break;
+          }
+		  case 'teddy-build-site-ignore-assets': {
+            await teddyBuildSite('--ignore-assets');
+            break;
+          }
+		  case 'teddy-build-site-ignore-collection': {
+            await teddyBuildSite('--ignore-collection');
+            break;
+          }
+		  case 'teddy-build-site-generate-ds-pdf': {
+            await teddyBuildSite('--generate-ds-pdf');
             break;
           }
         }

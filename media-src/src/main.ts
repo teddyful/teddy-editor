@@ -72,20 +72,52 @@ function initVditor(msg) {
       url: '/fuzzy', // 没有 url 参数粘贴图片无法上传 see: https://github.com/Vanessa219/vditor/blob/d7628a0a7cfe5d28b055469bf06fb0ba5cfaa1b2/src/ts/util/fixBrowserBehavior.ts#L1409
       async handler(files) {
         const permittedExtensions = [
-          "gif", 
-          "jpg", 
-          "jpeg", 
-          "mp3", 
-          "mp4", 
-          "pdf", 
-          "png"
+            "aac", 
+            "alac", 
+            "avif", 
+            "bmp", 
+            "csv", 
+            "doc", 
+            "docx", 
+            "eps", 
+            "flac", 
+            "gif", 
+            "heic", 
+            "htm", 
+            "html", 
+            "jpg", 
+            "jpeg", 
+            "json", 
+            "jsonc", 
+            "mkv", 
+            "mov", 
+            "mp3", 
+            "mp4", 
+            "odp", 
+            "ods", 
+            "odt", 
+            "pdf", 
+            "png", 
+            "ppt", 
+            "pptx", 
+            "svg", 
+            "tiff", 
+            "toml", 
+            "txt", 
+            "webm", 
+            "webp", 
+            "xls", 
+            "xlsx", 
+            "xml", 
+            "yaml", 
+            "yml"
         ];
         for ( const file of files ) {
           const extension = file.name.split('.').pop().toLowerCase();
           if ( !permittedExtensions.includes(extension) ) {
             vscode.postMessage({
               command: 'error',
-              content: 'Only common media and PDF file types are permitted for upload.'
+              content: 'Only common media, office document and data exchange file types are permitted for upload.'
             });
             return;
           }
